@@ -74,7 +74,7 @@ def playerStandings():
     """
 	connection = connect()
 	cursor = connection.cursor()
-	cursor.execute("select id, name, wins, matches from standings")
+	cursor.execute("select id, name, wins, matches from standings order by wins desc, matches, id")
 	standings = cursor.fetchall()
 	connection.close()
 	return standings
@@ -89,14 +89,14 @@ def reportMatch(winner, loser):
     """
 	connection = connect()
 	cursor = connection.cursor()
-	cursor.execute("insert into players (winner_id, loser_id) values (%s,%s)",
+	cursor.execute("insert into matches (winner_id, loser_id) values (%s,%s)",
 	 					(bleach.clean(winner), bleach.clean(loser)),)
 	connection.commit()
 	connection.close()
     
  
 def swissPairings():
-    """Returns a list of pairs of players for the next round of a match.
+	"""Returns a list of pairs of players for the next round of a match.
   
     Assuming that there are an even number of players registered, each player
     appears exactly once in the pairings.  Each player is paired with another
@@ -110,5 +110,9 @@ def swissPairings():
         id2: the second player's unique id
         name2: the second player's name
     """
+	standings = playerStandings()
+	for each row in standings:
+		
+    
 
 
