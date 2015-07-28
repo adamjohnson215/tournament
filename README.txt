@@ -1,0 +1,1 @@
+This program was designed to be run on a VirtualBox environment with PosgreSQL
