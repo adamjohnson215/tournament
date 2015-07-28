@@ -111,8 +111,26 @@ def swissPairings():
         name2: the second player's name
     """
 	standings = playerStandings()
-	for each row in standings:
-		
-    
-
-
+	swissPairings = []
+	numberOfPlayers = len(standings)
+	
+	if numberOfPlayers % 2 == 0:
+		index = 0
+		while index < numberOfPlayers:
+			swissPairings.append((standings[index][0],
+				standings[index][1],standings[index+1][0],
+				standings[index+1][1]),)
+			index = index + 2
+	else:
+		index = 1
+		swissPairings.append((standings[0][0],
+			standings[0][1],'N/A','Bye Round'),)
+		while index < numberOfPlayers:
+			swissPairings.append((standings[index][0],
+				standings[index][1],standings[index+1][0],
+				standings[index+1][1]),)
+			index = index + 2
+			
+	return swissPairings
+			
+			
