@@ -1,3 +1,3 @@
 This program was designed to be run on a VirtualBox environment with a Vagrant instance running a PostgreSQL database backend. No testing was implemented on other environments to check compatibility.
 
-To run the program, open the command prompt on the Linux virtual machine. Navigate to the /vagrant/tournament/ directory.
+To run the program, open the command prompt on the Linux virtual machine. Navigate to the /vagrant/tournament/ directory. From the tournament directory run the command: "\i tournament.sql" to build the necessary database backend. Once the database is initiated, run the command: "python tournament_test.py". The will run the test package relating to the tournament.py code. If the output is all tests are a success, then the package works. I look forward to your feedback and comments.
