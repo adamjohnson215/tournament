@@ -34,10 +34,9 @@ def countPlayers():
 	connection = connect()
 	cursor = connection.cursor()
 	cursor.execute("select count (*) as num from players")
-	playercount = cursor.fetchall()
+	playercount = cursor.fetchone()
 	connection.close()
-	for row in playercount:
-		players = row[0]
+	players = playercount[0]
 	return players
 
 def registerPlayer(name):	
@@ -74,7 +73,7 @@ def playerStandings():
     """
 	connection = connect()
 	cursor = connection.cursor()
-	cursor.execute("select id, name, wins, matches from standings order by wins desc, matches, id")
+	cursor.execute("select id, name, wins, matches from standings")
 	standings = cursor.fetchall()
 	connection.close()
 	return standings
@@ -113,24 +112,12 @@ def swissPairings():
 	standings = playerStandings()
 	swissPairings = []
 	numberOfPlayers = len(standings)
-	
-	if numberOfPlayers % 2 == 0:
-		index = 0
-		while index < numberOfPlayers:
-			swissPairings.append((standings[index][0],
-				standings[index][1],standings[index+1][0],
-				standings[index+1][1]),)
-			index = index + 2
-	else:
-		index = 1
-		swissPairings.append((standings[0][0],
-			standings[0][1],'N/A','Bye Round'),)
-		while index < numberOfPlayers:
-			swissPairings.append((standings[index][0],
-				standings[index][1],standings[index+1][0],
-				standings[index+1][1]),)
-			index = index + 2
-			
+	index = 0
+	while index < numberOfPlayers:
+		swissPairings.append((standings[index][0],
+			standings[index][1],standings[index+1][0],
+			standings[index+1][1]),)
+		index = index + 2		
 	return swissPairings
 			
 			
