@@ -6,6 +6,9 @@
 -- Create the tournament database
 CREATE DATABASE tournament;
 
+-- Connect to tournament database
+\c tournament;
+
 -- Create the table players for all registered players
 CREATE TABLE players(id serial primary key, name text);
 
